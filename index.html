@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>
+        Add Graphics to a SceneView | Sample | ArcGIS API for JavaScript 4.21
+    </title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.21/"></script>
+
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/SceneView",
+            "esri/layers/GraphicsLayer",
+            "esri/Graphic"
+        ], (Map, SceneView, GraphicsLayer, Graphic) => {
+            const map = new Map({
+                basemap: "hybrid"
+            });
+
+            const view = new SceneView({
+                container: "viewDiv",
+                map: map,
+
+                camera: {
+                    // autocasts as new Camera()
+                    position: {
+                        // autocasts as new Point()
+                        x: 106.78050001,
+                        y: 10.889569999,
+                        z: 1000
+                    },
+                    heading: 180,
+                    tilt: 30
+                    // tilt: 0
+                }
+            });
+
+            /*********************
+             * Add graphics layer
+             *********************/
+
+            const graphicsLayer = new GraphicsLayer();
+            map.add(graphicsLayer);
+
+
+            /***************************
+             * Add a 3D polygon graphic
+             ***************************/
+
+            const polygon = {
+                type: "polygon", // autocasts as new Polygon()
+                rings: [
+                    [106.802794, 10.869626, 100],
+                    [106.803635, 10.869621, 100],
+                    [106.80368, 10.869369, 100],
+                    [106.802801, 10.869372, 100],
+                    [106.802801, 10.869372, 100]
+                ]
+            };
+
+            const fillSymbol = {
+                type: "simple-fill", // autocasts as new SimpleFillSymbol()
+                color: [227, 139, 79, 1],
+                outline: {
+                    // autocasts as new SimpleLineSymbol()
+                    color: [255, 255, 255],
+                    width: 2
+                }
+            };
+
+            const polygonGraphic = new Graphic({
+                geometry: polygon,
+                symbol: fillSymbol
+            });
+
+            graphicsLayer.add(polygonGraphic);
+        });
+    </script>
+    </head>
+
+    <body>
+        <div id="viewDiv"></div>
+    </body>
+</body>
+
+</html>
