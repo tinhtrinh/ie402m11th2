@@ -120,4 +120,101 @@ for(let i = 0; i <= 19; i ++) {
     e1wall.push(w)
 }
 
-export { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall }
+const e1lineSymbol = {
+    type: "simple-line", // autocasts as SimpleLineSymbol()
+    color: [0, 51, 51],
+    width: 5
+};
+
+const e1line = [];
+
+for(let i = 0; i <= 6; i++) {
+    let l = [];
+
+    if(i == 0) {
+        for(let j = 0; j <= 20; j++) {
+            if(j < 20) {
+                l.push([e1base.rings[j][0], e1base.rings[j][1], 12.5])
+            } else {
+                l.push([e1base.rings[0][0], e1base.rings[0][1], 12.5])
+            }
+        }
+    } else {
+        for(let j = 0; j <= 20; j++) {
+            if(j < 20) {
+                l.push([e1base.rings[j][0], e1base.rings[j][1], 12.5 + i * 5])
+            } else {
+                l.push([e1base.rings[0][0], e1base.rings[0][1], 12.5 + i * 5])
+            }
+        }
+    }
+
+    let line = {
+        type: "polyline", // autocasts as new Polyline()
+        paths: l
+    };
+
+    e1line.push(line);
+}
+
+const e1doorSymbol = {
+    type: "simple-fill", // autocasts as new SimpleFillSymbol()
+    color: [255, 255, 255, 1],
+    outline: {
+        // autocasts as new SimpleLineSymbol()
+        color: [255, 255, 255],
+        width: 2
+    }
+};
+
+const e1sideWin1 = {
+    type: "polygon",
+    rings: [
+        [106.77945626600045, 10.884523819163455, 0],
+        [106.77947594629364, 10.884522670433181, 0],
+    ]
+}
+
+const e1sideWindow1 = [] 
+
+for(let i = 0; i <= 13; i++) {
+    let w1 = [e1sideWin1.rings[0][0], e1sideWin1.rings[0][1], 11 + i * 2.5]
+    let w2 = [e1sideWin1.rings[1][0], e1sideWin1.rings[1][1], 11 + i * 2.5 ]
+    let w3 = [e1sideWin1.rings[1][0], e1sideWin1.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
+    let w4 = [e1sideWin1.rings[0][0], e1sideWin1.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
+    
+    let w = {
+        type: "polygon",
+        rings: [w1, w2, w3, w4]
+    }
+
+    e1sideWindow1.push(w)
+}
+
+const e1sideWin2 = {
+    type: "polygon",
+    rings: [
+        [106.77925177702026, 10.88420999991657, 0],
+        [106.77926113530341, 10.88419198910902, 0],
+    ]
+}
+
+// [106.77925107702026, 10.88420971981657, 0],
+//         [106.77926113530341, 10.88419128210902, 0],
+
+const e1sideWindow2 = [] 
+
+for(let i = 0; i <= 13; i++) {
+    let w1 = [e1sideWin2.rings[0][0], e1sideWin2.rings[0][1], 11 + i * 2.5]
+    let w2 = [e1sideWin2.rings[1][0], e1sideWin2.rings[1][1], 11 + i * 2.5 ]
+    let w3 = [e1sideWin2.rings[1][0], e1sideWin2.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
+    let w4 = [e1sideWin2.rings[0][0], e1sideWin2.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
+    
+    let w = {
+        type: "polygon",
+        rings: [w1, w2, w3, w4]
+    }
+
+    e1sideWindow2.push(w)
+}
+export { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall, e1lineSymbol, e1line, e1sideWindow1, e1doorSymbol, e1sideWindow2 }
