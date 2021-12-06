@@ -199,9 +199,6 @@ const e1sideWin2 = {
     ]
 }
 
-// [106.77925107702026, 10.88420971981657, 0],
-//         [106.77926113530341, 10.88419128210902, 0],
-
 const e1sideWindow2 = [] 
 
 for(let i = 0; i <= 13; i++) {
@@ -217,4 +214,29 @@ for(let i = 0; i <= 13; i++) {
 
     e1sideWindow2.push(w)
 }
-export { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall, e1lineSymbol, e1line, e1sideWindow1, e1doorSymbol, e1sideWindow2 }
+
+const e1sideWin3 = {
+    type: "polygon",
+    rings: [
+        [106.77963309569033, 10.884205478624775, 0],
+        [106.77961700243718, 10.884182431489842, 0],
+    ]
+}
+
+const e1sideWindow3 = [] 
+
+for(let i = 0; i <= 13; i++) {
+    let w1 = [e1sideWin3.rings[0][0], e1sideWin3.rings[0][1], 11 + i * 2.5]
+    let w2 = [e1sideWin3.rings[1][0], e1sideWin3.rings[1][1], 11 + i * 2.5 ]
+    let w3 = [e1sideWin3.rings[1][0], e1sideWin3.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
+    let w4 = [e1sideWin3.rings[0][0], e1sideWin3.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
+    
+    let w = {
+        type: "polygon",
+        rings: [w1, w2, w3, w4]
+    }
+
+    e1sideWindow3.push(w)
+}
+
+export { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall, e1lineSymbol, e1line, e1sideWindow1, e1doorSymbol, e1sideWindow2, e1sideWindow3 }

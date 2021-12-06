@@ -1,8 +1,10 @@
-import { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall, e1lineSymbol, e1line, e1sideWindow1, e1doorSymbol, e1sideWindow2 } from "./e1.js";
+import { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall, e1lineSymbol, e1line, e1sideWindow1, e1doorSymbol, e1sideWindow2, e1sideWindow3 } from "./e1.js";
 import { g1base, g1roof, g1floor, g1wall, g1line } from "./g1.js";
 import { f1base, f1roof, f1floor, f1wall, f1line } from "./f1.js";
 import { f2base, f2roof, f2floor, f2wall, f2line } from "./f2.js";
 import { f1f2base, f1f2roof, f1f2floor, f1f2wall, f1f2line } from "./f1f2.js"
+
+import { c4base, c4roof, c4floor, c4wall, c4line } from "./c4.js"
 
 require([
     "esri/Map",
@@ -92,6 +94,14 @@ require([
             symbol: e1doorSymbol
         });
         graphicsLayer.add(e1sw2Graphic)
+    }
+
+    for(let i = 0; i <= 14; i++) {
+        let e1sw3Graphic = new Graphic({
+            geometry: e1sideWindow3[i],
+            symbol: e1doorSymbol
+        });
+        graphicsLayer.add(e1sw3Graphic)
     }
     
     /***************************
@@ -254,11 +264,51 @@ require([
         graphicsLayer.add(f1f2lineGraphic)
     }
 
-    // let f2f2Graphic = new Graphic({
-    //     geometry: f1f2base,
+    /***************************
+     * Add C4
+     ***************************/
+
+     const c4baseGraphic = new Graphic({
+        geometry: c4base,
+        symbol: e1wallSymbol
+    });
+
+    const c4roofGraphic = new Graphic({
+        geometry: c4roof,
+        symbol: e1wallSymbol
+    });
+
+    graphicsLayer.addMany([c4baseGraphic, c4roofGraphic]);
+
+    for(let i = 0; i <= 19; i ++) {
+        let c4floorGraphic = new Graphic({
+            geometry: c4floor[i],
+            symbol: e1floorSymbol
+        });
+        graphicsLayer.add(c4floorGraphic);
+    }
+
+    for(let i = 0; i <= 19; i ++) {
+        let c4wallGraphic = new Graphic({
+            geometry: c4wall[i],
+            symbol: e1wallSymbol
+        });
+        graphicsLayer.add(c4wallGraphic);
+    }
+    
+    for(let i = 0; i <= 8; i++) {
+        let c4lineGraphic = new Graphic({
+            geometry: c4line[i],
+            symbol: e1lineSymbol
+        });
+        graphicsLayer.add(c4lineGraphic)
+    }
+
+    // let c4Graphic = new Graphic({
+    //     geometry: c4base,
     //     symbol: e1wallSymbol
     // });
-    // graphicsLayer.add(f2f2Graphic)
+    // graphicsLayer.add(c4Graphic)
 
     /***************************
      * Add another building

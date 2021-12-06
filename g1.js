@@ -131,4 +131,76 @@ for(let i = 0; i <= 6; i++) {
     g1line.push(line);
 }
 
+const f1sideWin1 = {
+    type: "polygon",
+    rings: [
+        [106.77945626600045, 10.884523819163455, 0],
+        [106.77947594629364, 10.884522670433181, 0],
+    ]
+}
+
+const f1sideWindow1 = [] 
+
+for(let i = 0; i <= 13; i++) {
+    let w1 = [f1sideWin1.rings[0][0], f1sideWin1.rings[0][1], 11 + i * 2.5]
+    let w2 = [f1sideWin1.rings[1][0], f1sideWin1.rings[1][1], 11 + i * 2.5 ]
+    let w3 = [f1sideWin1.rings[1][0], f1sideWin1.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
+    let w4 = [f1sideWin1.rings[0][0], f1sideWin1.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
+    
+    let w = {
+        type: "polygon",
+        rings: [w1, w2, w3, w4]
+    }
+
+    f1sideWindow1.push(w)
+}
+
+const e1sideWin2 = {
+    type: "polygon",
+    rings: [
+        [106.77925177702026, 10.88420999991657, 0],
+        [106.77926113530341, 10.88419198910902, 0],
+    ]
+}
+
+const e1sideWindow2 = [] 
+
+for(let i = 0; i <= 13; i++) {
+    let w1 = [e1sideWin2.rings[0][0], e1sideWin2.rings[0][1], 11 + i * 2.5]
+    let w2 = [e1sideWin2.rings[1][0], e1sideWin2.rings[1][1], 11 + i * 2.5 ]
+    let w3 = [e1sideWin2.rings[1][0], e1sideWin2.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
+    let w4 = [e1sideWin2.rings[0][0], e1sideWin2.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
+    
+    let w = {
+        type: "polygon",
+        rings: [w1, w2, w3, w4]
+    }
+
+    e1sideWindow2.push(w)
+}
+
+const e1sideWin3 = {
+    type: "polygon",
+    rings: [
+        [106.77963309569033, 10.884205478624775, 0],
+        [106.77961700243718, 10.884182431489842, 0],
+    ]
+}
+
+const e1sideWindow3 = [] 
+
+for(let i = 0; i <= 13; i++) {
+    let w1 = [e1sideWin3.rings[0][0], e1sideWin3.rings[0][1], 11 + i * 2.5]
+    let w2 = [e1sideWin3.rings[1][0], e1sideWin3.rings[1][1], 11 + i * 2.5 ]
+    let w3 = [e1sideWin3.rings[1][0], e1sideWin3.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
+    let w4 = [e1sideWin3.rings[0][0], e1sideWin3.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
+    
+    let w = {
+        type: "polygon",
+        rings: [w1, w2, w3, w4]
+    }
+
+    e1sideWindow3.push(w)
+}
+
 export { g1base, g1roof, g1floor, g1wall, g1line }
