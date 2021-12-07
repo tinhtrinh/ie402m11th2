@@ -453,7 +453,7 @@ require([
 
   graphicsLayer.addMany([c5baseGraphic, c5roofGraphic]);
 
-  for (let i = 0; i <= 19; i++) {
+  for (let i = 0; i <= 23; i++) {
     let c5floorGraphic = new Graphic({
       geometry: c5floor[i],
       symbol: e1floorSymbol,
@@ -461,7 +461,7 @@ require([
     graphicsLayer.add(c5floorGraphic);
   }
 
-  for (let i = 0; i <= 19; i++) {
+  for (let i = 0; i <= 23; i++) {
     let c5wallGraphic = new Graphic({
       geometry: c5wall[i],
       symbol: e1wallSymbol,
