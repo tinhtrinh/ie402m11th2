@@ -1,4 +1,4 @@
-const d5base = {
+const d6base = {
   type: "polygon",
   rings: [
     [106.78176199938042, 10.885285270098713, 0],
@@ -28,7 +28,7 @@ const d5base = {
   ],
 };
 
-const d5roof = {
+const d6roof = {
   type: "polygon",
   rings: [
     [106.78176199938042, 10.885285270098713, 45],
@@ -58,25 +58,25 @@ const d5roof = {
   ],
 };
 
-const d5floor = [];
+const d6floor = [];
 
 for (let i = 0; i <= 23; i++) {
   let r1, r2, r3, r4;
 
   if (i < 23) {
-    r1 = d5base.rings[i];
-    r2 = d5base.rings[i + 1];
+    r1 = d6base.rings[i];
+    r2 = d6base.rings[i + 1];
     r3 = [
-      d5base.rings[i + 1][0],
-      d5base.rings[i + 1][1] + 0.00000000000001,
+      d6base.rings[i + 1][0],
+      d6base.rings[i + 1][1] + 0.00000000000001,
       10,
     ];
-    r4 = [d5base.rings[i][0], d5base.rings[i][1] + 0.00000000000001, 10];
+    r4 = [d6base.rings[i][0], d6base.rings[i][1] + 0.00000000000001, 10];
   } else {
-    r1 = d5base.rings[23];
-    r2 = d5base.rings[0];
-    r3 = [d5base.rings[0][0], d5base.rings[0][1] + 0.00000000000001, 10];
-    r4 = [d5base.rings[23][0], d5base.rings[23][1] + 0.00000000000001, 10];
+    r1 = d6base.rings[23];
+    r2 = d6base.rings[0];
+    r3 = [d6base.rings[0][0], d6base.rings[0][1] + 0.00000000000001, 10];
+    r4 = [d6base.rings[23][0], d6base.rings[23][1] + 0.00000000000001, 10];
   }
 
   let f = {
@@ -84,24 +84,24 @@ for (let i = 0; i <= 23; i++) {
     rings: [r1, r2, r3, r4],
   };
 
-  d5floor.push(f);
+  d6floor.push(f);
 }
 
-const d5wall = []
+const d6wall = []
 
 for(let i = 0; i <= 23; i ++) {
     let w1, w2, w3, w4;
 
     if(i < 23) {
-        w1 = [d5base.rings[i][0], d5base.rings[i][1], 10];
-        w2 = [d5base.rings[i + 1][0], d5base.rings[i + 1][1], 10];
-        w3 = [d5base.rings[i + 1][0], d5base.rings[i + 1][1] + 0.000000000000010, 45];
-        w4 = [d5base.rings[i][0], d5base.rings[i][1] + 0.000000000000010, 45];
+        w1 = [d6base.rings[i][0], d6base.rings[i][1], 10];
+        w2 = [d6base.rings[i + 1][0], d6base.rings[i + 1][1], 10];
+        w3 = [d6base.rings[i + 1][0], d6base.rings[i + 1][1] + 0.000000000000010, 45];
+        w4 = [d6base.rings[i][0], d6base.rings[i][1] + 0.000000000000010, 45];
     } else {
-        w1 = [d5base.rings[23][0], d5base.rings[23][1], 10];
-        w2 = [d5base.rings[0][0], d5base.rings[0][1], 10];
-        w3 = [d5base.rings[0][0], d5base.rings[0][1] + 0.000000000000010, 45];
-        w4 = [d5base.rings[23][0], d5base.rings[23][1] + 0.000000000000010, 45];
+        w1 = [d6base.rings[23][0], d6base.rings[23][1], 10];
+        w2 = [d6base.rings[0][0], d6base.rings[0][1], 10];
+        w3 = [d6base.rings[0][0], d6base.rings[0][1] + 0.000000000000010, 45];
+        w4 = [d6base.rings[23][0], d6base.rings[23][1] + 0.000000000000010, 45];
     }
 
     let w = {
@@ -109,10 +109,10 @@ for(let i = 0; i <= 23; i ++) {
         rings: [w1, w2, w3, w4]
     }
 
-    d5wall.push(w)
+    d6wall.push(w)
 }
 
-const d5line = [];
+const d6line = [];
 
 for(let i = 0; i <= 6; i++) {
     let l = [];
@@ -120,17 +120,17 @@ for(let i = 0; i <= 6; i++) {
     if(i == 0) {
         for(let j = 0; j <= 24; j++) {
             if(j < 24) {
-                l.push([d5base.rings[j][0], d5base.rings[j][1], 12.5])
+                l.push([d6base.rings[j][0], d6base.rings[j][1], 12.5])
             } else {
-                l.push([d5base.rings[0][0], d5base.rings[0][1], 12.5])
+                l.push([d6base.rings[0][0], d6base.rings[0][1], 12.5])
             }
         }
     } else {
         for(let j = 0; j <= 24; j++) {
             if(j < 24) {
-                l.push([d5base.rings[j][0], d5base.rings[j][1], 12.5 + i * 5])
+                l.push([d6base.rings[j][0], d6base.rings[j][1], 12.5 + i * 5])
             } else {
-                l.push([d5base.rings[0][0], d5base.rings[0][1], 12.5 + i * 5])
+                l.push([d6base.rings[0][0], d6base.rings[0][1], 12.5 + i * 5])
             }
         }
     }
@@ -140,6 +140,6 @@ for(let i = 0; i <= 6; i++) {
         paths: l
     };
 
-    d5line.push(line);
+    d6line.push(line);
 }
-export { d5base, d5roof, d5floor, d5wall, d5line };
+export { d6base, d6roof, d6floor, d6wall, d6line };

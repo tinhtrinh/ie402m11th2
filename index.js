@@ -18,7 +18,7 @@ import { f2base, f2roof, f2floor, f2wall, f2line } from "./f2.js";
 import { f1f2base, f1f2roof, f1f2floor, f1f2wall, f1f2line } from "./f1f2.js";
 
 import { c4base, c4roof, c4floor, c4wall, c4line } from "./c4.js";
-import { d5base, d5roof, d5floor, d5wall, d5line } from "./d5.js";
+import { d6base, d6roof, d6floor, d6wall, d6line } from "./d6.js";
 require([
   "esri/Map",
   "esri/views/SceneView",
@@ -317,42 +317,42 @@ require([
   }
 
   /***************************
-   * Add D5
+   * Add D6
    ***************************/
-  const d5baseGraphic = new Graphic({
-    geometry: d5base,
+  const d6baseGraphic = new Graphic({
+    geometry: d6base,
     symbol: e1wallSymbol,
   });
 
-  const d5roofGraphic = new Graphic({
-    geometry: d5roof,
+  const d6roofGraphic = new Graphic({
+    geometry: d6roof,
     symbol: e1wallSymbol,
   });
 
-  graphicsLayer.addMany([d5baseGraphic, d5roofGraphic]);
+  graphicsLayer.addMany([d6baseGraphic, d6roofGraphic]);
 
   for (let i = 0; i <= 23; i++) {
-    let d5floorGraphic = new Graphic({
-      geometry: d5floor[i],
+    let d6floorGraphic = new Graphic({
+      geometry: d6floor[i],
       symbol: e1floorSymbol,
     });
-    graphicsLayer.add(d5floorGraphic);
+    graphicsLayer.add(d6floorGraphic);
   }
 
   for (let i = 0; i <= 23; i++) {
-    let d5wallGraphic = new Graphic({
-      geometry: d5wall[i],
+    let d6wallGraphic = new Graphic({
+      geometry: d6wall[i],
       symbol: e1wallSymbol,
     });
-    graphicsLayer.add(d5wallGraphic);
+    graphicsLayer.add(d6wallGraphic);
   }
 
   for (let i = 0; i <= 8; i++) {
-    let d5lineGraphic = new Graphic({
-      geometry: d5line[i],
+    let d6lineGraphic = new Graphic({
+      geometry: d6line[i],
       symbol: e1lineSymbol,
     });
-    graphicsLayer.add(d5lineGraphic);
+    graphicsLayer.add(d6lineGraphic);
   }
   // let c4Graphic = new Graphic({
   //     geometry: c4base,
