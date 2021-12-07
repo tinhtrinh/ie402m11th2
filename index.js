@@ -18,9 +18,8 @@ import { f2base, f2roof, f2floor, f2wall, f2line } from "./f2.js";
 import { f1f2base, f1f2roof, f1f2floor, f1f2wall, f1f2line } from "./f1f2.js";
 
 import { c4base, c4roof, c4floor, c4wall, c4line } from "./c4.js";
-import { c3base, c3roof, c3floor, c3wall, c3line } from "./c3.js";
-import { c6base, c6roof, c6floor, c6wall, c6line } from "./c6.js";
 import { d6base, d6roof, d6floor, d6wall, d6line } from "./d6.js";
+import { d5base, d5roof, d5floor, d5wall, d5line } from "./d5.js";
 require([
   "esri/Map",
   "esri/views/SceneView",
@@ -319,87 +318,6 @@ require([
   }
 
   /***************************
-     * Add C3
-     ***************************/
-
-   const c3baseGraphic = new Graphic({
-      geometry: c3base,
-      symbol: e1wallSymbol
-  });
-
-  const c3roofGraphic = new Graphic({
-      geometry: c3roof,
-      symbol: e1wallSymbol
-  });
-
-  graphicsLayer.addMany([c3baseGraphic, c3roofGraphic]);
-
-  for(let i = 0; i <= 19; i ++) {
-      let c3floorGraphic = new Graphic({
-          geometry: c3floor[i],
-          symbol: e1floorSymbol
-      });
-      graphicsLayer.add(c3floorGraphic);
-  }
-
-  for(let i = 0; i <= 19; i ++) {
-      let c3wallGraphic = new Graphic({
-          geometry: c3wall[i],
-          symbol: e1wallSymbol
-      });
-      graphicsLayer.add(c3wallGraphic);
-  }
-
-  for(let i = 0; i <= 8; i++) {
-      let c3lineGraphic = new Graphic({
-          geometry: c3line[i],
-          symbol: e1lineSymbol
-      });
-      graphicsLayer.add(c3lineGraphic)
-  }
-
-/***************************
- * Add C6
- ***************************/
-
- const c6baseGraphic = new Graphic({
-      geometry: c6base,
-      symbol: e1wallSymbol
-  });
-
-  const c6roofGraphic = new Graphic({
-      geometry: c6roof,
-      symbol: e1wallSymbol
-  });
-
-  graphicsLayer.addMany([c6baseGraphic, c6roofGraphic]);
-
-  for(let i = 0; i <= 19; i ++) {
-      let c6floorGraphic = new Graphic({
-          geometry: c6floor[i],
-          symbol: e1floorSymbol
-      });
-      graphicsLayer.add(c6floorGraphic);
-  }
-
-  for(let i = 0; i <= 19; i ++) {
-      let c6wallGraphic = new Graphic({
-          geometry: c6wall[i],
-          symbol: e1wallSymbol
-      });
-      graphicsLayer.add(c6wallGraphic);
-  }
-
-  for(let i = 0; i <= 8; i++) {
-      let c6lineGraphic = new Graphic({
-          geometry: c6line[i],
-          symbol: e1lineSymbol
-      });
-      graphicsLayer.add(c6lineGraphic)
-  }
-
-
-  /***************************
    * Add D6
    ***************************/
   const d6baseGraphic = new Graphic({
@@ -436,6 +354,45 @@ require([
       symbol: e1lineSymbol,
     });
     graphicsLayer.add(d6lineGraphic);
+  }
+
+  /***************************
+   * Add D5
+   ***************************/
+  const d5baseGraphic = new Graphic({
+    geometry: d5base,
+    symbol: e1wallSymbol,
+  });
+
+  const d5roofGraphic = new Graphic({
+    geometry: d5roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([d5baseGraphic, d5roofGraphic]);
+
+  for (let i = 0; i <= 19; i++) {
+    let d5floorGraphic = new Graphic({
+      geometry: d5floor[i],
+      symbol: e1floorSymbol,
+    });
+    graphicsLayer.add(d5floorGraphic);
+  }
+
+  for (let i = 0; i <= 19; i++) {
+    let d5wallGraphic = new Graphic({
+      geometry: d5wall[i],
+      symbol: e1wallSymbol,
+    });
+    graphicsLayer.add(d5wallGraphic);
+  }
+
+  for (let i = 0; i <= 8; i++) {
+    let d5lineGraphic = new Graphic({
+      geometry: d5line[i],
+      symbol: e1lineSymbol,
+    });
+    graphicsLayer.add(d5lineGraphic);
   }
   // let c4Graphic = new Graphic({
   //     geometry: c4base,
