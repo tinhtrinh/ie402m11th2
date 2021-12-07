@@ -32,6 +32,8 @@ import { b3base, b3roof, b3floor, b3wall, b3line } from './b3.js';
 import { d2Base, d2BaseRings, d2Floor, d2Line, d2Roof, d2Wall } from './d2.js';
 import { d3Base, d3BaseRings, d3Floor, d3Line, d3Roof, d3Wall } from './d3.js';
 import { d4Base, d4BaseRings, d4Floor, d4Line, d4Roof, d4Wall } from './d4.js';
+import { c2base, c2floor, c2line, c2roof, c2wall } from './c2.js';
+import { c1base, c1floor, c1line, c1roof, c1wall } from './c1.js';
 
 require([
   'esri/Map',
@@ -820,5 +822,87 @@ require([
     });
 
     graphicsLayer.add(d4LineGraphic);
+  }
+
+  /***************************
+   * Add C2
+   ***************************/
+  const c2BaseGraphic = new Graphic({
+    geometry: c2base,
+    symbol: e1wallSymbol,
+  });
+
+  const c2RoofGraphic = new Graphic({
+    geometry: c2roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([c2BaseGraphic, c2RoofGraphic]);
+
+  for (let i = 0; i <= d2BaseRings.length - 1; i++) {
+    let c2FloorGraphic, c2WallGraphic;
+
+    c2FloorGraphic = new Graphic({
+      geometry: c2floor[i],
+      symbol: e1floorSymbol,
+    });
+
+    c2WallGraphic = new Graphic({
+      geometry: c2wall[i],
+      symbol: e1wallSymbol,
+    });
+
+    graphicsLayer.add(c2FloorGraphic);
+    graphicsLayer.add(c2WallGraphic);
+  }
+
+  for (let i = 0; i <= 8; i++) {
+    let c2LineGraphic = new Graphic({
+      geometry: c2line[i],
+      symbol: e1lineSymbol,
+    });
+
+    graphicsLayer.add(c2LineGraphic);
+  }
+
+  /***************************
+   * Add C1
+   ***************************/
+  const c1BaseGraphic = new Graphic({
+    geometry: c1base,
+    symbol: e1wallSymbol,
+  });
+
+  const c1RoofGraphic = new Graphic({
+    geometry: c1roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([c1BaseGraphic, c1RoofGraphic]);
+
+  for (let i = 0; i <= d2BaseRings.length - 1; i++) {
+    let c1FloorGraphic, c1WallGraphic;
+
+    c1FloorGraphic = new Graphic({
+      geometry: c1floor[i],
+      symbol: e1floorSymbol,
+    });
+
+    c1WallGraphic = new Graphic({
+      geometry: c1wall[i],
+      symbol: e1wallSymbol,
+    });
+
+    graphicsLayer.add(c1FloorGraphic);
+    graphicsLayer.add(c1WallGraphic);
+  }
+
+  for (let i = 0; i <= 8; i++) {
+    let c1LineGraphic = new Graphic({
+      geometry: c1line[i],
+      symbol: e1lineSymbol,
+    });
+
+    graphicsLayer.add(c1LineGraphic);
   }
 });
