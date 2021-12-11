@@ -18,6 +18,7 @@ import { f2base, f2roof, f2floor, f2wall, f2line } from "./f2.js";
 import { f1f2base, f1f2roof, f1f2floor, f1f2wall, f1f2line } from "./f1f2.js";
 
 import { c4base, c4roof, c4floor, c4wall, c4line } from "./c4.js";
+import { c3base, c3roof, c3floor, c3wall, c3line } from "./c3.js";
 
 import { d6base, d6roof, d6floor, d6wall, d6line } from "./d6.js";
 import { c6base, c6roof, c6floor, c6wall, c6line } from "./c6.js";
@@ -29,6 +30,17 @@ import { ba1base, ba1roof, ba1floor, ba1wall, ba1line } from "./ba1.js"
 import { ba2base, ba2roof, ba2floor, ba2wall, ba2line } from "./ba2.js"
 import { b4base, b4roof, b4floor, b4wall, b4line } from "./b4.js"
 import { b3base, b3roof, b3floor, b3wall, b3line } from "./b3.js"
+import { b5base, b5roof, b5floor, b5wall, b5line } from "./b5.js"
+import { ba4base, ba4roof, ba4floor, ba4wall, ba4line } from "./ba4.js"
+import { ba3base, ba3roof, ba3floor, ba3wall, ba3line } from "./ba3.js"
+import { ba5base, ba5roof, ba5floor, ba5wall, ba5line } from "./ba5.js"
+
+import { d2Base, d2BaseRings, d2Floor, d2Line, d2Roof, d2Wall } from './d2.js';
+import { d3Base, d3BaseRings, d3Floor, d3Line, d3Roof, d3Wall } from './d3.js';
+import { d4Base, d4BaseRings, d4Floor, d4Line, d4Roof, d4Wall } from './d4.js';
+
+import { c2base, c2floor, c2line, c2roof, c2wall } from './c2.js';
+import { c1base, c1floor, c1line, c1roof, c1wall } from './c1.js';
 
 require([
   "esri/Map",
@@ -520,19 +532,6 @@ require([
         graphicsLayer.add(b3lineGraphic)
     }
 
-    
-    // let b3Graphic = new Graphic({
-    //     geometry: b3base,
-    //     symbol: e1wallSymbol
-    // });
-    // graphicsLayer.add(b3Graphic)
-
-    /***************************
-     * Add another building
-     ***************************/
-
-
-  
   /***************************
    * Add D6
    ***************************/
@@ -612,6 +611,46 @@ require([
   }
 
   /***************************
+     * Add C3
+     ***************************/
+
+   const c3baseGraphic = new Graphic({
+        geometry: c3base,
+        symbol: e1wallSymbol
+    });
+
+    const c3roofGraphic = new Graphic({
+        geometry: c3roof,
+        symbol: e1wallSymbol
+    });
+
+    graphicsLayer.addMany([c3baseGraphic, c3roofGraphic]);
+
+    for(let i = 0; i <= 19; i ++) {
+        let c3floorGraphic = new Graphic({
+            geometry: c3floor[i],
+            symbol: e1floorSymbol
+        });
+        graphicsLayer.add(c3floorGraphic);
+    }
+
+    for(let i = 0; i <= 19; i ++) {
+        let c3wallGraphic = new Graphic({
+            geometry: c3wall[i],
+            symbol: e1wallSymbol
+        });
+        graphicsLayer.add(c3wallGraphic);
+    }
+
+    for(let i = 0; i <= 8; i++) {
+        let c3lineGraphic = new Graphic({
+            geometry: c3line[i],
+            symbol: e1lineSymbol
+        });
+        graphicsLayer.add(c3lineGraphic)
+    }
+
+  /***************************
    * Add C6
    ***************************/
   const c6baseGraphic = new Graphic({
@@ -688,11 +727,378 @@ require([
     });
     graphicsLayer.add(c5lineGraphic);
   }
-  // let c4Graphic = new Graphic({
-  //     geometry: c4base,
-  //     symbol: e1wallSymbol
-  // });
-  // graphicsLayer.add(c4Graphic)
+
+  /***************************
+   * Add B5
+   ***************************/
+   const b5baseGraphic = new Graphic({
+    geometry: b5base,
+    symbol: e1wallSymbol,
+  });
+
+  const b5roofGraphic = new Graphic({
+    geometry: b5roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([b5baseGraphic, b5roofGraphic]);
+
+  for (let i = 0; i <= 15; i++) {
+    let b5floorGraphic = new Graphic({
+      geometry: b5floor[i],
+      symbol: e1floorSymbol,
+    });
+    graphicsLayer.add(b5floorGraphic);
+  }
+
+  for (let i = 0; i <= 15; i++) {
+    let b5wallGraphic = new Graphic({
+      geometry: b5wall[i],
+      symbol: e1wallSymbol,
+    });
+    graphicsLayer.add(b5wallGraphic);
+  }
+
+  for (let i = 0; i <= 4; i++) {
+    let b5lineGraphic = new Graphic({
+      geometry: b5line[i],
+      symbol: e1lineSymbol,
+    });
+    graphicsLayer.add(b5lineGraphic);
+  }
+
+  /***************************
+   * Add BA4
+   ***************************/
+
+   const ba4baseGraphic = new Graphic({
+    geometry: ba4base,
+    symbol: e1wallSymbol,
+  });
+
+  const ba4roofGraphic = new Graphic({
+    geometry: ba4roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([ba4baseGraphic, ba4roofGraphic]);
+
+  for (let i = 0; i <= 15; i++) {
+    let ba4floorGraphic = new Graphic({
+      geometry: ba4floor[i],
+      symbol: e1floorSymbol,
+    });
+    graphicsLayer.add(ba4floorGraphic);
+  }
+
+  for (let i = 0; i <= 15; i++) {
+    let ba4wallGraphic = new Graphic({
+      geometry: ba4wall[i],
+      symbol: e1wallSymbol,
+    });
+    graphicsLayer.add(ba4wallGraphic);
+  }
+
+  for (let i = 0; i <= 4; i++) {
+    let ba4lineGraphic = new Graphic({
+      geometry: ba4line[i],
+      symbol: e1lineSymbol,
+    });
+    graphicsLayer.add(ba4lineGraphic);
+  }
+
+  /***************************
+   * Add BA3
+   ***************************/
+
+   const ba3baseGraphic = new Graphic({
+    geometry: ba3base,
+    symbol: e1wallSymbol,
+  });
+
+  const ba3roofGraphic = new Graphic({
+    geometry: ba3roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([ba3baseGraphic, ba3roofGraphic]);
+
+  for (let i = 0; i <= 15; i++) {
+    let ba3floorGraphic = new Graphic({
+      geometry: ba3floor[i],
+      symbol: e1floorSymbol,
+    });
+    graphicsLayer.add(ba3floorGraphic);
+  }
+
+  for (let i = 0; i <= 15; i++) {
+    let ba3wallGraphic = new Graphic({
+      geometry: ba3wall[i],
+      symbol: e1wallSymbol,
+    });
+    graphicsLayer.add(ba3wallGraphic);
+  }
+
+  for (let i = 0; i <= 4; i++) {
+    let ba3lineGraphic = new Graphic({
+      geometry: ba3line[i],
+      symbol: e1lineSymbol,
+    });
+    graphicsLayer.add(ba3lineGraphic);
+  }
+
+  /***************************
+   * Add BA5
+   ***************************/
+
+   const ba5baseGraphic = new Graphic({
+    geometry: ba5base,
+    symbol: e1wallSymbol,
+  });
+
+  const ba5roofGraphic = new Graphic({
+    geometry: ba5roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([ba5baseGraphic, ba5roofGraphic]);
+
+  for (let i = 0; i <= 15; i++) {
+    let ba5floorGraphic = new Graphic({
+      geometry: ba5floor[i],
+      symbol: e1floorSymbol,
+    });
+    graphicsLayer.add(ba5floorGraphic);
+  }
+
+  for (let i = 0; i <= 15; i++) {
+    let ba5wallGraphic = new Graphic({
+      geometry: ba5wall[i],
+      symbol: e1wallSymbol,
+    });
+    graphicsLayer.add(ba5wallGraphic);
+  }
+
+  for (let i = 0; i <= 4; i++) {
+    let ba5lineGraphic = new Graphic({
+      geometry: ba5line[i],
+      symbol: e1lineSymbol,
+    });
+    graphicsLayer.add(ba5lineGraphic);
+  }
+
+  /***************************
+   * Add D2
+   ***************************/
+
+   const d2BaseGraphic = new Graphic({
+    geometry: d2Base,
+    symbol: e1wallSymbol,
+  });
+
+  const d2RoofGraphic = new Graphic({
+    geometry: d2Roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([d2BaseGraphic, d2RoofGraphic]);
+
+  for (let i = 0; i <= d2BaseRings.length - 1; i++) {
+    let d2FloorGraphic, d2WallGraphic;
+
+    d2FloorGraphic = new Graphic({
+      geometry: d2Floor[i],
+      symbol: e1floorSymbol,
+    });
+
+    d2WallGraphic = new Graphic({
+      geometry: d2Wall[i],
+      symbol: e1wallSymbol,
+    });
+
+    graphicsLayer.add(d2FloorGraphic);
+    graphicsLayer.add(d2WallGraphic);
+  }
+
+  for (let i = 0; i <= 8; i++) {
+    let d2LineGraphic = new Graphic({
+      geometry: d2Line[i],
+      symbol: e1lineSymbol,
+    });
+
+    graphicsLayer.add(d2LineGraphic);
+  }
+
+  /***************************
+   * Add D3
+   ***************************/
+
+  const d3BaseGraphic = new Graphic({
+    geometry: d3Base,
+    symbol: e1wallSymbol,
+  });
+
+  const d3RoofGraphic = new Graphic({
+    geometry: d3Roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([d3BaseGraphic, d3RoofGraphic]);
+
+  for (let i = 0; i <= d3BaseRings.length - 1; i++) {
+    let d3FloorGraphic, d3WallGraphic;
+
+    d3FloorGraphic = new Graphic({
+      geometry: d3Floor[i],
+      symbol: e1floorSymbol,
+    });
+
+    d3WallGraphic = new Graphic({
+      geometry: d3Wall[i],
+      symbol: e1wallSymbol,
+    });
+
+    graphicsLayer.add(d3FloorGraphic);
+    graphicsLayer.add(d3WallGraphic);
+  }
+
+  for (let i = 0; i <= 8; i++) {
+    let d3LineGraphic = new Graphic({
+      geometry: d3Line[i],
+      symbol: e1lineSymbol,
+    });
+
+    graphicsLayer.add(d3LineGraphic);
+  }
+
+  /***************************
+   * Add D4
+   ***************************/
+  const d4BaseGraphic = new Graphic({
+    geometry: d4Base,
+    symbol: e1wallSymbol,
+  });
+
+  const d4RoofGraphic = new Graphic({
+    geometry: d4Roof,
+    symbol: e1wallSymbol,
+  });
+
+  graphicsLayer.addMany([d4BaseGraphic, d4RoofGraphic]);
+
+  for (let i = 0; i <= d4BaseRings.length - 1; i++) {
+    let d4FloorGraphic, d4WallGraphic;
+
+    d4FloorGraphic = new Graphic({
+      geometry: d4Floor[i],
+      symbol: e1floorSymbol,
+    });
+
+    d4WallGraphic = new Graphic({
+      geometry: d4Wall[i],
+      symbol: e1wallSymbol,
+    });
+
+    graphicsLayer.add(d4FloorGraphic);
+    graphicsLayer.add(d4WallGraphic);
+  }
+
+  for (let i = 0; i <= 8; i++) {
+    let d4LineGraphic = new Graphic({
+      geometry: d4Line[i],
+      symbol: e1lineSymbol,
+    });
+
+    graphicsLayer.add(d4LineGraphic);
+  }
+
+   /***************************
+   * Add C2
+   ***************************/
+    const c2BaseGraphic = new Graphic({
+      geometry: c2base,
+      symbol: e1wallSymbol,
+    });
+  
+    const c2RoofGraphic = new Graphic({
+      geometry: c2roof,
+      symbol: e1wallSymbol,
+    });
+  
+    graphicsLayer.addMany([c2BaseGraphic, c2RoofGraphic]);
+  
+    for (let i = 0; i <= d2BaseRings.length - 1; i++) {
+      let c2FloorGraphic, c2WallGraphic;
+  
+      c2FloorGraphic = new Graphic({
+        geometry: c2floor[i],
+        symbol: e1floorSymbol,
+      });
+  
+      c2WallGraphic = new Graphic({
+        geometry: c2wall[i],
+        symbol: e1wallSymbol,
+      });
+  
+      graphicsLayer.add(c2FloorGraphic);
+      graphicsLayer.add(c2WallGraphic);
+    }
+  
+    for (let i = 0; i <= 8; i++) {
+      let c2LineGraphic = new Graphic({
+        geometry: c2line[i],
+        symbol: e1lineSymbol,
+      });
+  
+      graphicsLayer.add(c2LineGraphic);
+    }
+  
+    /***************************
+     * Add C1
+     ***************************/
+    const c1BaseGraphic = new Graphic({
+      geometry: c1base,
+      symbol: e1wallSymbol,
+    });
+  
+    const c1RoofGraphic = new Graphic({
+      geometry: c1roof,
+      symbol: e1wallSymbol,
+    });
+  
+    graphicsLayer.addMany([c1BaseGraphic, c1RoofGraphic]);
+  
+    for (let i = 0; i <= d2BaseRings.length - 1; i++) {
+      let c1FloorGraphic, c1WallGraphic;
+  
+      c1FloorGraphic = new Graphic({
+        geometry: c1floor[i],
+        symbol: e1floorSymbol,
+      });
+  
+      c1WallGraphic = new Graphic({
+        geometry: c1wall[i],
+        symbol: e1wallSymbol,
+      });
+  
+      graphicsLayer.add(c1FloorGraphic);
+      graphicsLayer.add(c1WallGraphic);
+    }
+  
+    for (let i = 0; i <= 8; i++) {
+      let c1LineGraphic = new Graphic({
+        geometry: c1line[i],
+        symbol: e1lineSymbol,
+      });
+  
+      graphicsLayer.add(c1LineGraphic);
+    }
+
+//   let ba5Graphic = new Graphic({
+//       geometry: ba5base,
+//       symbol: e1wallSymbol
+//   });
+//   graphicsLayer.add(ba5Graphic)
 
   /***************************
    * Add another building
