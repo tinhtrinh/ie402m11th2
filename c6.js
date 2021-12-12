@@ -1,4 +1,6 @@
-const c6base = {
+import { renderFloor, renderWall, renderLine, renderWindow } from "./util.js"
+
+const base = {
   type: "polygon",
   rings: [
     [106.7795288737268, 10.883644198494975, 0],
@@ -28,7 +30,7 @@ const c6base = {
   ],
 };
 
-const c6roof = {
+const roof = {
   type: "polygon",
   rings: [
     [106.7795288737268, 10.883644198494975, 45],
@@ -58,93 +60,18 @@ const c6roof = {
   ],
 };
 
-const c6floor = [];
+const floor = renderFloor(23, base.rings)
 
-for (let i = 0; i <= 23; i++) {
-  let r1, r2, r3, r4;
+const wall = renderWall(23, base.rings)
 
-  if (i < 23) {
-    r1 = c6base.rings[i];
-    r2 = c6base.rings[i + 1];
-    r3 = [
-      c6base.rings[i + 1][0],
-      c6base.rings[i + 1][1] + 0.00000000000001,
-      10,
-    ];
-    r4 = [c6base.rings[i][0], c6base.rings[i][1] + 0.00000000000001, 10];
-  } else {
-    r1 = c6base.rings[23];
-    r2 = c6base.rings[0];
-    r3 = [c6base.rings[0][0], c6base.rings[0][1] + 0.00000000000001, 10];
-    r4 = [c6base.rings[23][0], c6base.rings[23][1] + 0.00000000000001, 10];
-  }
+const line = renderLine(6, 23, base.rings)
 
-  let f = {
-    type: "polygon",
-    rings: [r1, r2, r3, r4],
-  };
+const ringNumber = 23
 
-  c6floor.push(f);
-}
+const lineNumber = 8
 
-const c6wall = [];
+let baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic
 
-for (let i = 0; i <= 23; i++) {
-  let w1, w2, w3, w4;
+const c6 = { ringNumber, lineNumber, baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic, base, roof, floor, wall, line }
 
-  if (i < 23) {
-    w1 = [c6base.rings[i][0], c6base.rings[i][1], 10];
-    w2 = [c6base.rings[i + 1][0], c6base.rings[i + 1][1], 10];
-    w3 = [
-      c6base.rings[i + 1][0],
-      c6base.rings[i + 1][1] + 0.00000000000001,
-      45,
-    ];
-    w4 = [c6base.rings[i][0], c6base.rings[i][1] + 0.00000000000001, 45];
-  } else {
-    w1 = [c6base.rings[23][0], c6base.rings[23][1], 10];
-    w2 = [c6base.rings[0][0], c6base.rings[0][1], 10];
-    w3 = [c6base.rings[0][0], c6base.rings[0][1] + 0.00000000000001, 45];
-    w4 = [c6base.rings[23][0], c6base.rings[23][1] + 0.00000000000001, 45];
-  }
-
-  let w = {
-    type: "polygon",
-    rings: [w1, w2, w3, w4],
-  };
-
-  c6wall.push(w);
-}
-
-const c6line = [];
-
-for (let i = 0; i <= 6; i++) {
-  let l = [];
-
-  if (i == 0) {
-    for (let j = 0; j <= 24; j++) {
-      if (j < 24) {
-        l.push([c6base.rings[j][0], c6base.rings[j][1], 12.5]);
-      } else {
-        l.push([c6base.rings[0][0], c6base.rings[0][1], 12.5]);
-      }
-    }
-  } else {
-    for (let j = 0; j <= 24; j++) {
-      if (j < 24) {
-        l.push([c6base.rings[j][0], c6base.rings[j][1], 12.5 + i * 5]);
-      } else {
-        l.push([c6base.rings[0][0], c6base.rings[0][1], 12.5 + i * 5]);
-      }
-    }
-  }
-
-  let line = {
-    type: "polyline", // autocasts as new Polyline()
-    paths: l,
-  };
-
-  c6line.push(line);
-}
-
-export { c6base, c6roof, c6floor, c6wall, c6line };
+export { c6 }

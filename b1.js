@@ -1,4 +1,6 @@
-const b1base = {
+import { renderFloor, renderWall, renderLine, renderWindow } from "./util.js"
+
+const base = {
     type: "polygon",
     rings: [
         [106.78290256961101, 10.882587609855685, 0],
@@ -16,7 +18,7 @@ const b1base = {
     ]
 }
 
-const b1roof = {
+const roof = {
     type: "polygon",
     rings: [
         [106.78290256961101, 10.882587609855685, 45],
@@ -34,54 +36,18 @@ const b1roof = {
     ]
 }
 
-const b1floor = []
+const floor = renderFloor(11, base.rings)
 
-for(let i = 0; i <= 11; i ++) {
-    let r1, r2, r3, r4;
+const wall = renderWall(11, base.rings)
 
-    if(i < 11) {
-        r1 = b1base.rings[i];
-        r2 = b1base.rings[i + 1];
-        r3 = [b1base.rings[i + 1][0], b1base.rings[i + 1][1] + 0.000000000000010, 10];
-        r4 = [b1base.rings[i][0], b1base.rings[i][1] + 0.000000000000010, 10];
-    } else {
-        r1 = b1base.rings[11];
-        r2 = b1base.rings[0];
-        r3 = [b1base.rings[0][0], b1base.rings[0][1] + 0.000000000000010, 10];
-        r4 = [b1base.rings[11][0], b1base.rings[11][1] + 0.000000000000010, 10];
-    }
+const line = renderLine(6, 11, base.rings)
 
-    let f = {
-        type: "polygon",
-        rings: [r1, r2, r3, r4]
-    }
+const ringNumber = 11
 
-    b1floor.push(f)
-}
+const lineNumber = 8
 
-const b1wall = []
+let baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic
 
-for(let i = 0; i <= 11; i ++) {
-    let w1, w2, w3, w4;
+const b1 = { ringNumber, lineNumber, baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic, base, roof, floor, wall, line }
 
-    if(i < 11) {
-        w1 = [b1base.rings[i][0], b1base.rings[i][1], 10];
-        w2 = [b1base.rings[i + 1][0], b1base.rings[i + 1][1], 10];
-        w3 = [b1base.rings[i + 1][0], b1base.rings[i + 1][1] + 0.000000000000010, 45];
-        w4 = [b1base.rings[i][0], b1base.rings[i][1] + 0.000000000000010, 45];
-    } else {
-        w1 = [b1base.rings[11][0], b1base.rings[11][1], 10];
-        w2 = [b1base.rings[0][0], b1base.rings[0][1], 10];
-        w3 = [b1base.rings[0][0], b1base.rings[0][1] + 0.000000000000010, 45];
-        w4 = [b1base.rings[11][0], b1base.rings[11][1] + 0.000000000000010, 45];
-    }
-
-    let w = {
-        type: "polygon",
-        rings: [w1, w2, w3, w4]
-    }
-
-    b1wall.push(w)
-}
-
-export { b1base, b1roof, b1floor, b1wall }
+export { b1 }

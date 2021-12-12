@@ -1,4 +1,6 @@
-const e1base = {
+import { renderFloor, renderWall, renderLine, renderWindow } from "./util.js"
+
+const base = {
     type: "polygon", // autocasts as new Polygon()
     rings: [
         [106.77938230780805, 10.88452818796133, 0],
@@ -24,7 +26,7 @@ const e1base = {
     ]
 };
 
-const e1roof = {
+const roof = {
     type: "polygon", // autocasts as new Polygon()
     rings: [
         [106.77938230780805, 10.88452818796133, 45],
@@ -50,122 +52,11 @@ const e1roof = {
     ]
 };
 
-const e1wallSymbol = {
-    type: "simple-fill", // autocasts as new SimpleFillSymbol()
-    color: [153, 255, 255, 1],
-    outline: {
-        // autocasts as new SimpleLineSymbol()
-        color: [0, 0, 0],
-        width: 2
-    }
-};
+const floor = renderFloor(19, base.rings)
 
-const e1floorSymbol = {
-    type: "simple-fill", // autocasts as new SimpleFillSymbol()
-    color: [0, 51, 51, 1],
-    outline: {
-        // autocasts as new SimpleLineSymbol()
-        color: [0, 51, 51],
-        width: 2
-    }
-};
+const wall = renderWall(19, base.rings)
 
-const e1floor = []
-
-for(let i = 0; i <= 19; i ++) {
-    let r1, r2, r3, r4;
-
-    if(i < 19) {
-        r1 = e1base.rings[i];
-        r2 = e1base.rings[i + 1];
-        r3 = [e1base.rings[i + 1][0], e1base.rings[i + 1][1] + 0.000000000000010, 10];
-        r4 = [e1base.rings[i][0], e1base.rings[i][1] + 0.000000000000010, 10];
-    } else {
-        r1 = e1base.rings[19];
-        r2 = e1base.rings[0];
-        r3 = [e1base.rings[0][0], e1base.rings[0][1] + 0.000000000000010, 10];
-        r4 = [e1base.rings[19][0], e1base.rings[19][1] + 0.000000000000010, 10];
-    }
-
-    let f = {
-        type: "polygon",
-        rings: [r1, r2, r3, r4]
-    }
-
-    e1floor.push(f)
-}
-
-const e1wall = []
-
-for(let i = 0; i <= 19; i ++) {
-    let w1, w2, w3, w4;
-
-    if(i < 19) {
-        w1 = [e1base.rings[i][0], e1base.rings[i][1], 10];
-        w2 = [e1base.rings[i + 1][0], e1base.rings[i + 1][1], 10];
-        w3 = [e1base.rings[i + 1][0], e1base.rings[i + 1][1] + 0.000000000000010, 45];
-        w4 = [e1base.rings[i][0], e1base.rings[i][1] + 0.000000000000010, 45];
-    } else {
-        w1 = [e1base.rings[19][0], e1base.rings[19][1], 10];
-        w2 = [e1base.rings[0][0], e1base.rings[0][1], 10];
-        w3 = [e1base.rings[0][0], e1base.rings[0][1] + 0.000000000000010, 45];
-        w4 = [e1base.rings[19][0], e1base.rings[19][1] + 0.000000000000010, 45];
-    }
-
-    let w = {
-        type: "polygon",
-        rings: [w1, w2, w3, w4]
-    }
-
-    e1wall.push(w)
-}
-
-const e1lineSymbol = {
-    type: "simple-line", // autocasts as SimpleLineSymbol()
-    color: [0, 51, 51],
-    width: 5
-};
-
-const e1line = [];
-
-for(let i = 0; i <= 6; i++) {
-    let l = [];
-
-    if(i == 0) {
-        for(let j = 0; j <= 20; j++) {
-            if(j < 20) {
-                l.push([e1base.rings[j][0], e1base.rings[j][1], 12.5])
-            } else {
-                l.push([e1base.rings[0][0], e1base.rings[0][1], 12.5])
-            }
-        }
-    } else {
-        for(let j = 0; j <= 20; j++) {
-            if(j < 20) {
-                l.push([e1base.rings[j][0], e1base.rings[j][1], 12.5 + i * 5])
-            } else {
-                l.push([e1base.rings[0][0], e1base.rings[0][1], 12.5 + i * 5])
-            }
-        }
-    }
-
-    let line = {
-        type: "polyline", // autocasts as new Polyline()
-        paths: l
-    };
-
-    e1line.push(line);
-}
-
-const e1doorSymbol = {
-    type: "simple-fill", // autocasts as new SimpleFillSymbol()
-    color: [255, 255, 255, 1],
-    outline: {
-        // autocasts as new SimpleLineSymbol()
-        color: [255, 255, 255],
-        width: 2
-    }
-};
+const line = renderLine(6, 19, base.rings)
 
 const e1sideWin1 = {
     type: "polygon",
@@ -175,21 +66,7 @@ const e1sideWin1 = {
     ]
 }
 
-const e1sideWindow1 = [] 
-
-for(let i = 0; i <= 13; i++) {
-    let w1 = [e1sideWin1.rings[0][0], e1sideWin1.rings[0][1], 11 + i * 2.5]
-    let w2 = [e1sideWin1.rings[1][0], e1sideWin1.rings[1][1], 11 + i * 2.5 ]
-    let w3 = [e1sideWin1.rings[1][0], e1sideWin1.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
-    let w4 = [e1sideWin1.rings[0][0], e1sideWin1.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
-    
-    let w = {
-        type: "polygon",
-        rings: [w1, w2, w3, w4]
-    }
-
-    e1sideWindow1.push(w)
-}
+const e1sideWindow1 = renderWindow(13, e1sideWin1.rings)
 
 const e1sideWin2 = {
     type: "polygon",
@@ -199,21 +76,7 @@ const e1sideWin2 = {
     ]
 }
 
-const e1sideWindow2 = [] 
-
-for(let i = 0; i <= 13; i++) {
-    let w1 = [e1sideWin2.rings[0][0], e1sideWin2.rings[0][1], 11 + i * 2.5]
-    let w2 = [e1sideWin2.rings[1][0], e1sideWin2.rings[1][1], 11 + i * 2.5 ]
-    let w3 = [e1sideWin2.rings[1][0], e1sideWin2.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
-    let w4 = [e1sideWin2.rings[0][0], e1sideWin2.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
-    
-    let w = {
-        type: "polygon",
-        rings: [w1, w2, w3, w4]
-    }
-
-    e1sideWindow2.push(w)
-}
+const e1sideWindow2 = renderWindow(13, e1sideWin2.rings)
 
 const e1sideWin3 = {
     type: "polygon",
@@ -223,20 +86,16 @@ const e1sideWin3 = {
     ]
 }
 
-const e1sideWindow3 = [] 
+const e1sideWindow3 = renderWindow(13, e1sideWin3.rings)
 
-for(let i = 0; i <= 13; i++) {
-    let w1 = [e1sideWin3.rings[0][0], e1sideWin3.rings[0][1], 11 + i * 2.5]
-    let w2 = [e1sideWin3.rings[1][0], e1sideWin3.rings[1][1], 11 + i * 2.5 ]
-    let w3 = [e1sideWin3.rings[1][0], e1sideWin3.rings[1][1] + 0.000000000000010, 12 + i * 2.5 ]
-    let w4 = [e1sideWin3.rings[0][0], e1sideWin3.rings[0][1] + 0.000000000000010, 12 + i * 2.5 ]
-    
-    let w = {
-        type: "polygon",
-        rings: [w1, w2, w3, w4]
-    }
+const ringNumber = 19
 
-    e1sideWindow3.push(w)
-}
+const lineNumber = 8
 
-export { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall, e1lineSymbol, e1line, e1sideWindow1, e1doorSymbol, e1sideWindow2, e1sideWindow3 }
+let baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic
+
+const e1 = { ringNumber, lineNumber, baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic, base, roof, floor, wall, line, e1sideWindow1, e1sideWindow2, e1sideWindow3 }
+
+export { e1 }
+
+// export { e1base, e1wallSymbol, e1roof, e1floorSymbol, e1floor, e1wall, e1lineSymbol, e1line, e1sideWindow1, e1doorSymbol, e1sideWindow2, e1sideWindow3 }

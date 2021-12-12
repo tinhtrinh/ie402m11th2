@@ -1,4 +1,6 @@
-const ba5base = {
+import { renderFloor, renderWall, renderLine, renderWindow } from "./util.js"
+
+const base = {
     type: "polygon",
     rings: [
         [106.78075187722818, 10.882433507233003, 0],
@@ -20,7 +22,7 @@ const ba5base = {
     ]
 }
 
-const ba5roof = {
+const roof = {
     type: "polygon",
     rings: [
         [106.78075187722818, 10.882433507233003, 35],
@@ -42,85 +44,18 @@ const ba5roof = {
     ]
 }
 
-const ba5floor = []
+const floor = renderFloor(15, base.rings)
 
-for(let i = 0; i <= 15; i ++) {
-    let r1, r2, r3, r4;
+const wall = renderWall(15, base.rings, 35)
 
-    if(i < 15) {
-        r1 = ba5base.rings[i];
-        r2 = ba5base.rings[i + 1];
-        r3 = [ba5base.rings[i + 1][0], ba5base.rings[i + 1][1] + 0.000000000000010, 10];
-        r4 = [ba5base.rings[i][0], ba5base.rings[i][1] + 0.000000000000010, 10];
-    } else {
-        r1 = ba5base.rings[15];
-        r2 = ba5base.rings[0];
-        r3 = [ba5base.rings[0][0], ba5base.rings[0][1] + 0.000000000000010, 10];
-        r4 = [ba5base.rings[15][0], ba5base.rings[15][1] + 0.000000000000010, 10];
-    }
+const line = renderLine(6, 15, base.rings)
 
-    let f = {
-        type: "polygon",
-        rings: [r1, r2, r3, r4]
-    }
+const ringNumber = 15
 
-    ba5floor.push(f)
-}
+const lineNumber = 4
 
-const ba5wall = []
+let baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic
 
-for(let i = 0; i <= 15; i ++) {
-    let w1, w2, w3, w4;
+const ba5 = { ringNumber, lineNumber, baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic, base, roof, floor, wall, line }
 
-    if(i < 15) {
-        w1 = [ba5base.rings[i][0], ba5base.rings[i][1], 10];
-        w2 = [ba5base.rings[i + 1][0], ba5base.rings[i + 1][1], 10];
-        w3 = [ba5base.rings[i + 1][0], ba5base.rings[i + 1][1] + 0.000000000000010, 35];
-        w4 = [ba5base.rings[i][0], ba5base.rings[i][1] + 0.000000000000010, 35];
-    } else {
-        w1 = [ba5base.rings[15][0], ba5base.rings[15][1], 10];
-        w2 = [ba5base.rings[0][0], ba5base.rings[0][1], 10];
-        w3 = [ba5base.rings[0][0], ba5base.rings[0][1] + 0.000000000000010, 35];
-        w4 = [ba5base.rings[15][0], ba5base.rings[15][1] + 0.000000000000010, 35];
-    }
-
-    let w = {
-        type: "polygon",
-        rings: [w1, w2, w3, w4]
-    }
-
-    ba5wall.push(w)
-}
-
-const ba5line = [];
-
-for(let i = 0; i <= 4; i++) {
-    let l = [];
-
-    if(i == 0) {
-        for(let j = 0; j <= 16; j++) {
-            if(j < 16) {
-                l.push([ba5base.rings[j][0], ba5base.rings[j][1], 12.5])
-            } else {
-                l.push([ba5base.rings[0][0], ba5base.rings[0][1], 12.5])
-            }
-        }
-    } else {
-        for(let j = 0; j <= 16; j++) {
-            if(j < 16) {
-                l.push([ba5base.rings[j][0], ba5base.rings[j][1], 12.5 + i * 5])
-            } else {
-                l.push([ba5base.rings[0][0], ba5base.rings[0][1], 12.5 + i * 5])
-            }
-        }
-    }
-
-    let line = {
-        type: "polyline", // autocasts as new Polyline()
-        paths: l
-    };
-
-    ba5line.push(line);
-}
-
-export { ba5base, ba5roof, ba5floor, ba5wall, ba5line }
+export { ba5 }

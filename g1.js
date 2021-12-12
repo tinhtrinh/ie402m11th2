@@ -1,4 +1,6 @@
-const g1base = {
+import { renderFloor, renderWall, renderLine, renderWindow } from "./util.js"
+
+const base = {
     type: "polygon",
     rings: [
         [106.78089974130954, 10.88566628082739, 0],
@@ -24,7 +26,7 @@ const g1base = {
     ]
 }
 
-const g1roof = {
+const roof = {
     type: "polygon",
     rings: [
         [106.78089974130954, 10.88566628082739, 45],
@@ -50,86 +52,11 @@ const g1roof = {
     ]
 }
 
-const g1floor = []
+const floor = renderFloor(19, base.rings)
 
-for(let i = 0; i <= 19; i ++) {
-    let r1, r2, r3, r4;
+const wall = renderWall(19, base.rings)
 
-    if(i < 19) {
-        r1 = g1base.rings[i];
-        r2 = g1base.rings[i + 1];
-        r3 = [g1base.rings[i + 1][0], g1base.rings[i + 1][1] + 0.000000000000010, 10];
-        r4 = [g1base.rings[i][0], g1base.rings[i][1] + 0.000000000000010, 10];
-    } else {
-        r1 = g1base.rings[19];
-        r2 = g1base.rings[0];
-        r3 = [g1base.rings[0][0], g1base.rings[0][1] + 0.000000000000010, 10];
-        r4 = [g1base.rings[19][0], g1base.rings[19][1] + 0.000000000000010, 10];
-    }
-
-    let f = {
-        type: "polygon",
-        rings: [r1, r2, r3, r4]
-    }
-
-    g1floor.push(f)
-}
-
-const g1wall = []
-
-for(let i = 0; i <= 19; i ++) {
-    let w1, w2, w3, w4;
-
-    if(i < 19) {
-        w1 = [g1base.rings[i][0], g1base.rings[i][1], 10];
-        w2 = [g1base.rings[i + 1][0], g1base.rings[i + 1][1], 10];
-        w3 = [g1base.rings[i + 1][0], g1base.rings[i + 1][1] + 0.000000000000010, 45];
-        w4 = [g1base.rings[i][0], g1base.rings[i][1] + 0.000000000000010, 45];
-    } else {
-        w1 = [g1base.rings[19][0], g1base.rings[19][1], 10];
-        w2 = [g1base.rings[0][0], g1base.rings[0][1], 10];
-        w3 = [g1base.rings[0][0], g1base.rings[0][1] + 0.000000000000010, 45];
-        w4 = [g1base.rings[19][0], g1base.rings[19][1] + 0.000000000000010, 45];
-    }
-
-    let w = {
-        type: "polygon",
-        rings: [w1, w2, w3, w4]
-    }
-
-    g1wall.push(w)
-}
-
-const g1line = [];
-
-for(let i = 0; i <= 6; i++) {
-    let l = [];
-
-    if(i == 0) {
-        for(let j = 0; j <= 20; j++) {
-            if(j < 20) {
-                l.push([g1base.rings[j][0], g1base.rings[j][1], 12.5])
-            } else {
-                l.push([g1base.rings[0][0], g1base.rings[0][1], 12.5])
-            }
-        }
-    } else {
-        for(let j = 0; j <= 20; j++) {
-            if(j < 20) {
-                l.push([g1base.rings[j][0], g1base.rings[j][1], 12.5 + i * 5])
-            } else {
-                l.push([g1base.rings[0][0], g1base.rings[0][1], 12.5 + i * 5])
-            }
-        }
-    }
-
-    let line = {
-        type: "polyline", // autocasts as new Polyline()
-        paths: l
-    };
-
-    g1line.push(line);
-}
+const line = renderLine(6, 19, base.rings)
 
 const f1sideWin1 = {
     type: "polygon",
@@ -203,4 +130,12 @@ for(let i = 0; i <= 13; i++) {
     e1sideWindow3.push(w)
 }
 
-export { g1base, g1roof, g1floor, g1wall, g1line }
+const ringNumber = 19
+
+const lineNumber = 8
+
+let baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic
+
+const g1 = { ringNumber, lineNumber, baseGraphic, roofGraphic, floorGraphic, wallGraphic, lineGraphic, base, roof, floor, wall, line }
+
+export { g1 }
